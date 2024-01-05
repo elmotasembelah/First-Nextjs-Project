@@ -1,0 +1,3 @@
+this is a dashvoard folder which houses folders for pages inside of it with being a path itself ( to group pages together for folder organization)
+
+to create a dashboard folder we put the name in () and the name can be whatever we want not just dashboard
