@@ -12,7 +12,7 @@ const SubmetBtn = () => {
             className="btn btn-error rounded-md capitalize"
             disabled={pending}
         >
-            {pending ? "Deleting" : "Delete"}
+            {pending ? "Deleting..." : "Delete"}
         </button>
     );
 };

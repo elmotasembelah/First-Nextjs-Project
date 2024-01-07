@@ -3,10 +3,8 @@ import { revalidatePath } from "next/cache";
 import prisma from "./db";
 import { redirect } from "next/navigation";
 import z from "zod";
-import { resolve } from "styled-jsx/css";
 
 export const getAllTasks = async () => {
-    "use server";
     const allTasks = await prisma.task.findMany({
         orderBy: {
             createdAt: "desc",
@@ -17,7 +15,6 @@ export const getAllTasks = async () => {
 };
 
 export const getUniqueTask = async (taskId) => {
-    "use server";
     const task = await prisma.task.findUnique({
         where: {
             id: taskId,
@@ -28,8 +25,6 @@ export const getUniqueTask = async (taskId) => {
 };
 
 export const createTask = async (newTaskContent) => {
-    ("use server");
-
     await new Promise((resolve) => {
         setTimeout(resolve, 2000);
     });
@@ -43,8 +38,6 @@ export const createTask = async (newTaskContent) => {
 };
 
 export const createTaskCustom = async (prevState, newTaskContent) => {
-    ("use server");
-
     // await new Promise((resolve) => {
     //     setTimeout(resolve, 2000);
     // });
@@ -72,7 +65,6 @@ export const createTaskCustom = async (prevState, newTaskContent) => {
 
 // this is using the  formdata api which is native to js
 export const createTaskAndRevalidateTasks = async (prevState, formData) => {
-    "use server";
     const newTaskContent = formData.get("content");
     const message = await createTaskCustom(prevState, newTaskContent);
     revalidatePath("/tasks");
@@ -80,7 +72,6 @@ export const createTaskAndRevalidateTasks = async (prevState, formData) => {
 };
 
 export const updateTask = async (taskId, taskContent, taskCompletionStatus) => {
-    "use server";
     const updatedTask = await prisma.task.update({
         where: {
             id: taskId,
@@ -134,7 +125,6 @@ export const updateTaskCustom = async (
 };
 
 export const updatedTaskAndValidatePath = async (prevState, formData) => {
-    "use server";
     const task = {
         id: formData.get("id"),
         content: formData.get("content"),
@@ -151,7 +141,6 @@ export const updatedTaskAndValidatePath = async (prevState, formData) => {
 };
 
 export const deleteTask = async (taskId) => {
-    "use server";
     const deletedTask = await prisma.task.delete({
         where: {
             id: taskId,
@@ -159,8 +148,6 @@ export const deleteTask = async (taskId) => {
     });
 };
 export const deleteTaskCustom = async (taskId) => {
-    "use server";
-
     // await new Promise((resolve) => {
     //     setTimeout(resolve, 2000);
     // });
@@ -191,7 +178,6 @@ export const deleteTaskCustom = async (taskId) => {
 };
 
 export const deleteTaskAndRevalidatePath = async (pervState, formData) => {
-    "use server";
     const taskId = formData.get("id");
     const message = await deleteTaskCustom(taskId);
     revalidatePath("/tasks");

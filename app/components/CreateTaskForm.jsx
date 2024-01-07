@@ -1,8 +1,5 @@
-// this is the base functionality without any extra code for user input validation or error handling
-
+// this is the base functionality without any extra code for user input validation or error handling or form action pending
 import { createTaskAndRevalidateTasks } from "@/utils/taskActions";
-
-const resetInput = () => {};
 
 const CreateTaskForm = () => {
     return (
